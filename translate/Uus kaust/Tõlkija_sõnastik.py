@@ -11,7 +11,8 @@ while vastus:
     3 >>> Новое слово
     4 >>> Исправление ошибок
     5 >>> Тест
-    6 >>> Выход""")
+    6 >>> Прослушать слово
+    7 >>> Выход""")
     vastus = input(">>> ")
     if vastus == "1":
         print(eng)
@@ -32,18 +33,16 @@ while vastus:
                 
     elif vastus == "3":
         print()
-        slovo = input()
-        uus_sona("eng.txt",slovo,eng)
         slovo = input("Напишите слово, которое хотите добавить в английский словарь >>> ")
         if slovo in eng:
             print("Такое слово уже есть")
         else:
-            new_word("eng.txt",slovo,eng)
+            uus_sona("eng.txt",slovo,eng)
         slovo = input("Напишите слово, которое хотите добавить в русский словарь >>> ")
         if slovo in rus:
             print("Такое слово уже есть")
         else:
-            new_word("rus.txt",slovo,rus)
+            uus_sona("rus.txt",slovo,rus)
     elif vastus == "4":
         print()
         vastus = input("В каком словаре ошибка eng/rus? >>> ")
@@ -77,13 +76,7 @@ while vastus:
         else:
             print("К сожалению, вы получаете 2!")
     elif vastus == "6":
-        text=input("->")
-        keel=input("->")
-        heli(text,keel)
-        print()
-        #text=input("->")
-        #keel=input("->")
-        #heli(text,keel)
+        voice()
     elif vastus == "7":
         break
     else:

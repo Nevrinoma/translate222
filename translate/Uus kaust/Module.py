@@ -1,10 +1,8 @@
 import os
-#from gtts import gTTS
 from random import *
-
-#def heli(text:str,keel:str):
-   # obj=gTTS(text=text,lang=keel;slow=False).save("heli.mp3")
-    #os.system("heli.mp3")
+from typing import List
+import gtts 
+from playsound import playsound
 
 def failist_lugemine(f:str,l:list)->list:
     """Информация из файла f в список l
@@ -37,10 +35,10 @@ def rida_salvestamine(f:str,rida:str):
     fail.write(rida + "\n")
     fail.close()
 
-def uus_sona(f:str,rida:str)->list:
+def uus_sona(f:str,slovo:str,l:list)->list:
     """
     :param str f:
-    :param str rida:
+    :param str slovo:
     :rtype: list
     """
     with open(f,"a",encoding="utf-8-sig") as fail:
@@ -53,6 +51,7 @@ def translate(slovo:str)->str:
     :param str slovo:
     :rtype:
     """
+
 def correction(slovo:str,l:list):
     """Заменим старое слово с ошибкой новым
     :param str slovo: слово которое нужно изменить
@@ -77,7 +76,26 @@ def test(result:int,l:list,l2:list)->int:
     if otvet in l2: 
         if l2.index(otvet) == l.index(slovo):
             result += 1
-            print("Õige")
+            print("Правильно")
     else:
-        print("Vale")
+        print("Неправильно")
     return result
+
+
+def voice():
+    lang = input("Какоя язык прослушать eng/rus >>> ")
+    if lang=="rus":
+        text=input("Введите слово для озвучки на русском: ")
+        tts=gtts.gTTS(text, lang="ru")
+        tts.save("sound.mp3")
+        playsound("sound.mp3")
+        #os.remove("sound.mp3")
+    elif lang=="eng":
+        text=input("Введите слово для озвучки на английском: ")
+        tts=gtts.gTTS(text, lang="en")
+        tts.save("wordsound.mp3")
+        playsound("wordsound.mp3")
+        #close("wordsound.mp3")
+        #os.remove("wordsound.mp3")
+    else:
+        print("Ошибка ввода, попробуйте еще раз")
