@@ -4,6 +4,7 @@ rus = []
 failist_lugemine("eng.txt",eng)
 failist_lugemine("rus.txt",rus)
 vastus = True
+result = 0
 while vastus:
     print("""
     1 >>> Все слова
@@ -58,23 +59,8 @@ while vastus:
         print()
         print("""
         Сейчас вы должны переводить слова на оценку, пишите перевод слова который будет на экране!""")
-        result = 0
-        for i in range(len(rus)):
-            number = randint(1,2)
-            if number == 1:
-                result = test(result,rus,eng)
-            else:
-                result = test(result,eng,rus)
-        hind = result * 100 / len(rus)
-        print(f"Вы набрали {result}/{len(rus)} пунктов ")
-        if hind >= 90:
-            print("Отлично, вы получаете 5!")
-        elif hind >= 75 and hind <= 90:
-            print("Прекрасно, вы получаете 4!")
-        elif hind >= 50 and hind <= 75:
-            print("Неплохо, вы получаете 3!")
-        else:
-            print("К сожалению, вы получаете 2!")
+        
+        print(test(result,eng,rus)[1])
     elif vastus == "6":
         voice()
     elif vastus == "7":

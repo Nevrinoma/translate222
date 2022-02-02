@@ -46,11 +46,6 @@ def uus_sona(f:str,slovo:str,l:list)->list:
          l.append(slovo)
     return l
 
-def translate(slovo:str)->str:
-    """
-    :param str slovo:
-    :rtype:
-    """
 
 def correction(slovo:str,l:list):
     """Заменим старое слово с ошибкой новым
@@ -64,22 +59,35 @@ def correction(slovo:str,l:list):
             l.remove(slovo)
             print(f"Слово >>> {slovo} было изменено на >>> {uus_slovo}!")
 
-def test(result:int,l:list,l2:list)->int:
+def test(result:int,l:list,l2:list):
     """Слово выбирается случайным образом из списка, а затем проверяется
     :param int result: число правильных ответов
     :param list l: русский словарь
     :param list l2: английский словарь
     :rtype: int
     """
-    slovo = choice(l)
-    otvet = input(f"{slovo} >>> ")
-    if otvet in l2: 
-        if l2.index(otvet) == l.index(slovo):
-            result += 1
-            print("Правильно")
+    
+    result = 0
+    for i in range(len(l)):
+        slovo = choice(l)
+        otvet = input(f"{slovo} >>> ")
+        if otvet in l2: 
+            if l2.index(otvet) == l.index(slovo):
+                result += 1
+                print("Правильно")
+            else:
+                print("Неправильно")
+    
+    hind = result * 100 / len(l2)
+    print(f"Вы набрали {result}/{len(l)} пунктов ")
+    if hind >= 90:
+        return result, "Отлично, вы получаете 5!"
+    elif hind >= 75 and hind <= 90:
+        return result, "Прекрасно, вы получаете 4!"
+    elif hind >= 50 and hind <= 75:
+        return result, "Неплохо, вы получаете 3!"
     else:
-        print("Неправильно")
-    return result
+        return result, "К сожалению, вы получаете 2!"
 
 
 def voice():
